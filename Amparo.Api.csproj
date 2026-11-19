@@ -4,6 +4,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>amparo-api-fiap-2026</UserSecretsId>
+    <DefaultItemExcludes>$(DefaultItemExcludes);net-GS-revisado\**</DefaultItemExcludes>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.22">

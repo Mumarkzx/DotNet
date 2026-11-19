@@ -8,3 +8,4 @@ appsettings.Local.json
 TestResults/
 .dotnet-cli/
 .nuget-packages/
+net-GS-revisado/
