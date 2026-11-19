@@ -18,6 +18,29 @@ AMPARO_API_CIDADAO (ID PK)  1 ──────── N  AMPARO_API_CUIDADOR
                                              CIDADAO_ID FK
 ```
 
+```mermaid
+erDiagram
+    AMPARO_API_CIDADAO ||--o{ AMPARO_API_CUIDADOR : "possui"
+    AMPARO_API_CIDADAO {
+        NUMBER ID PK
+        NVARCHAR2 NOME
+        DATE DATA_NASCIMENTO
+        NVARCHAR2 TELEFONE
+        NVARCHAR2 ENDERECO
+        NVARCHAR2 CONDICAO
+        NUMBER ATIVO
+    }
+    AMPARO_API_CUIDADOR {
+        NUMBER ID PK
+        NVARCHAR2 NOME
+        NVARCHAR2 TELEFONE
+        NVARCHAR2 EMAIL
+        NVARCHAR2 PARENTESCO
+        NUMBER PRIORIDADE
+        NUMBER CIDADAO_ID FK
+    }
+```
+
 Um cidadão assistido pode possuir vários cuidadores; cada cuidador pertence a um único cidadão. O modelo veio do relacionamento original `CIDADAO.id ← CUIDADOR.cidadao_id` do `AMPARO.sql`. A API usa o prefixo `AMPARO_API_` para não conflitar nem apagar as seis tabelas, sequences, procedures e registros da entrega de Banco de Dados.
 
 Ao excluir um cidadão que ainda possui cuidadores, a API devolve `409 Conflict`. A exclusão em cascata foi evitada para preservar a rede de apoio.
@@ -153,3 +176,4 @@ WHERE c.ID = :cidadao_id;
 - Aplicar e verificar a migration no Oracle.
 - Executar o Postman na ordem, consultar o JOIN antes de apagar os registros e capturar evidências.
 - Preencher os links marcados em `ENTREGA_PORTAL.txt` e respeitar o prazo do Portal.
+
